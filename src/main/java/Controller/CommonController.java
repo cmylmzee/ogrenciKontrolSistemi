@@ -14,7 +14,12 @@ public class CommonController{
     }
 
     public void addNewTaskStudent(StudentModel studentModel, String task){
-        studentModel.getTasks().add(task);
+        try {
+            studentModel.getTasks().add(task);
+        }catch (NullPointerException e){
+            System.out.println(e);
+        }
+
     }
 
     public  void addNewTaskForTheTeacher(TeacherModel teacherModel, String task){

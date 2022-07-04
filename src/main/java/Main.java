@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        StudentModel studentModel2 =new StudentModel();
+        StudentModel studentModel2 =null;
         TeacherModel teacherModel2 = null;
         ManagerModel managerModel2 = null;
 
@@ -56,6 +56,7 @@ public class Main {
         while (a != 1) {
             try {
                 Scanner scanner = new Scanner(System.in);
+                Scanner scanner2 = new Scanner(System.in);
                 System.out.println("WELCOME\n");
                 System.out.println("Select the type of user you will login\n");
                 System.out.println("1-Student\n" +
@@ -79,7 +80,7 @@ public class Main {
                             break;
                         }
 
-                        System.out.println("Welcome : " + studentModel2.getName() +"\n"); // ?
+                        System.out.println("Welcome : \n"); // ?
                         System.out.println("Choose your action\n");
                         System.out.println("1-Show The Test Notes\n" +
                                 "2-Show The Tasks\n" +
@@ -114,9 +115,11 @@ public class Main {
                     case 2:{
                         System.out.println("Please enter your id & password\n");
                         boolean authenticaton = false;
+                        int id = scanner.nextInt();  // BURADA HATA İLE KARŞILAŞTIM O YÜZDEN BÖYLE
+                        int password = scanner2.nextInt();
                         for (TeacherModel teacherModel1 : teacherModels) {
-                            if (teacherModel1.getID() == scanner.nextInt() && teacherModel1.getPassword() == scanner.nextInt()) {
-                                teacherModel2 = teacherModel1;
+                            if (teacherModel1.getID() == id && teacherModel1.getPassword() == password) {
+                                teacherController = new TeacherController(teacherModel1);
                                 authenticaton = true;
                                 break;
                             }
@@ -127,12 +130,12 @@ public class Main {
                             break;
                         }
 
-                        System.out.println("Welcome : " + teacherModel2.getName()); // ?
+                        System.out.println("Welcome Teacher :)"); // ?
                         System.out.println("Choose your action\n");
                         System.out.println("1-Add New Note\n" +
                                 "2-Add New Task For The Student\n" +
                                 "3-Add New Task For The Teacher\n" +
-                                "4-Add New Task For The Manager" +
+                                "4-Add New Task For The Manager\n" +
                                 "5-Exit");
                         switch (scanner.nextInt()){
                             case 1:{
@@ -162,8 +165,8 @@ public class Main {
                                     if(studentModel1.getID() == scanner.nextInt()){
                                         authenticaton = true;
                                         System.out.println("Please enter the task");
+                                        scanner.nextLine();
                                         teacherController.addNewTaskStudent(studentModel1,scanner.nextLine());
-
                                         System.out.println("The task is added");
                                         break;
                                     }
@@ -182,6 +185,7 @@ public class Main {
                                     if(teacherModel1.getID() == scanner.nextInt()){
                                         authenticaton = true;
                                         System.out.println("Please enter the task");
+                                        scanner.nextLine();
                                         teacherController.addNewTaskForTheTeacher(teacherModel1,scanner.nextLine());
                                         System.out.println("The task is added");
                                         break;
@@ -200,6 +204,7 @@ public class Main {
                                 for(ManagerModel managerModel1 : managerModels){
                                     if(managerModel1.getID() == scanner.nextInt()){
                                         authenticaton = true;
+                                        scanner.nextLine();
                                         System.out.println("Please enter the task");
                                         teacherController.addNewTaskForTheManager(managerModel1,scanner.nextLine());
                                         System.out.println("The task is added");
@@ -224,7 +229,189 @@ public class Main {
                         }
                         break;
                     }
-                    case 3:break;
+                    case 3:{
+                        System.out.println("Please enter your id & password\n");
+                        int id = scanner.nextInt();  // BURADA HATA İLE KARŞILAŞTIM O YÜZDEN BÖYLE
+                        int password = scanner2.nextInt();
+                        boolean authenticaton = false;
+                        for (ManagerModel managerModel1 : managerModels) {
+                            if (managerModel1.getID() == id && managerModel1.getPassword() == password) {
+                                managerController = new ManagerController(managerModel1);
+                                authenticaton = true;
+                                break;
+                            }
+
+                        }
+                        if (!authenticaton) {
+                            System.out.println("Id not found or password is false\n");
+                            break;
+                        }
+
+                        System.out.println("Welcome Boss `)"); // ?
+                        System.out.println("Choose your action\n");
+                        System.out.println("1-Add New Note\n" +
+                                "2-Add New Task For The Student\n" +
+                                "3-Add New Task For The Teacher\n" +
+                                "4-Add New Task For The Manager\n" +
+                                "5-Add New Student\n" +
+                                "6-Add New Teacher" +
+                                "6-Add New Manager\n" +
+                                "7-Exit");
+                        switch (scanner.nextInt()){
+                            case 1:{
+                                authenticaton = false;
+                                System.out.println("Enter the id of the student you will add a grade to\n");
+                                for(StudentModel studentModel1 : studentModels){
+                                    if(studentModel1.getID() == scanner.nextInt()){
+                                        authenticaton = true;
+                                        System.out.println("Please enter the note");
+                                        managerController.addNewNoteStudent(studentModel1,scanner.nextInt());
+                                        System.out.println("The note is added");
+                                        break;
+                                    }
+                                }
+
+                                if(!authenticaton){
+                                    System.out.println("Id is not found");
+                                }
+
+                                break;
+                            }
+                            case 2:{
+                                authenticaton = false;
+                                System.out.println("Enter the id of the student you will add a task to\n");
+                                for(StudentModel studentModel1 : studentModels){
+                                    if(studentModel1.getID() == scanner.nextInt()){
+                                        authenticaton = true;
+                                        System.out.println("Please enter the task");
+                                        scanner.nextLine();
+                                        managerController.addNewTaskStudent(studentModel1,scanner.nextLine());
+                                        System.out.println("The task is added");
+                                        break;
+                                    }
+                                }
+
+                                if(!authenticaton){
+                                    System.out.println("Id is not found");
+                                }
+
+                                break;
+                            }
+                            case 3:{
+                                authenticaton = false;
+                                System.out.println("Enter the id of the teacher you will add a task to\n");
+                                for(TeacherModel teacherModel1 : teacherModels){
+                                    if(teacherModel1.getID() == scanner.nextInt()){
+                                        authenticaton = true;
+                                        System.out.println("Please enter the task");
+                                        scanner.nextLine();
+                                        managerController.addNewTaskForTheTeacher(teacherModel1,scanner.nextLine());
+                                        System.out.println("The task is added");
+                                        break;
+                                    }
+                                }
+
+                                if(!authenticaton){
+                                    System.out.println("Id is not found");
+                                }
+
+                                break;
+                            }
+                            case 4:{
+                                authenticaton = false;
+                                System.out.println("Enter the id of the manager you will add a task to\n");
+                                for(ManagerModel managerModel1 : managerModels){
+                                    if(managerModel1.getID() == scanner.nextInt()){
+                                        authenticaton = true;
+                                        scanner.nextLine();
+                                        System.out.println("Please enter the task");
+                                        managerController.addNewTaskForTheManager(managerModel1,scanner.nextLine());
+                                        System.out.println("The task is added");
+                                        break;
+                                    }
+                                }
+
+                                if(!authenticaton){
+                                    System.out.println("Id is not found");
+                                }
+
+                                break;
+                            }
+                            case 5:{
+                                    System.out.println("Please enter the student's ID, name, surname, class number, respectively.\n");
+                                    List<String> tasks = new ArrayList<>();
+                                    List<Integer> notes = new ArrayList<>();
+                                    int id = scanner.nextInt();
+                                    boolean idIsValıd = false;
+                                    for(StudentModel studentModel1 : studentModels){
+                                        if (studentModel1.getID()==id){
+                                            idIsValıd = true;
+                                        }
+                                    }
+                                    if(idIsValıd){
+                                        System.out.println("Id is already given!!");
+                                        break;
+                                    }
+                                    scanner.nextLine();
+                                    managerController.addNewStudent(new StudentModel(id,scanner.nextLine(), scanner.nextLine(),tasks,notes,scanner.nextLine() ), studentModels);
+                                    System.out.println("The students is registered.");
+                                    break;
+                            }
+                            case 6:{
+                                System.out.println("Please enter the teacher's ID, name, surname, class number, respectively.\n");
+                                List<String> tasks = new ArrayList<>();
+                                int id = scanner.nextInt();
+                                boolean idIsValıd = false;
+                                for(TeacherModel teacherModel1 : teacherModels){
+                                    if (teacherModel1.getID()==id){
+                                        idIsValıd = true;
+                                    }
+                                }
+                                if(idIsValıd){
+                                    System.out.println("Id is already given!!");
+                                    break;
+                                }
+                                scanner.nextLine();
+                                managerController.addNewTeacher(new TeacherModel(id,scanner.nextLine(), scanner.nextLine(),tasks,scanner.nextInt(),scanner.nextInt() ), teacherModels);
+                                System.out.println("The teacher is registered.");
+                                break;
+                            }
+                            case 7:{
+                                System.out.println("Please enter the manager's ID, name, surname, class number, respectively.\n");
+                                List<String> tasks = new ArrayList<>();
+                                List<Integer> notes = new ArrayList<>();
+                                int id = scanner.nextInt();
+                                boolean idIsValıd = false;
+                                for(ManagerModel managerModel1 : managerModels){
+                                    if (managerModel1.getID()==id){
+                                        idIsValıd = true;
+                                    }
+                                }
+                                if(idIsValıd){
+                                    System.out.println("Id is already given!!");
+                                    break;
+                                }
+                                scanner.nextLine();
+                                managerController.addNewManager(new ManagerModel(id,scanner.nextLine(), scanner.nextLine(),tasks,scanner.nextInt(),scanner.nextInt() ), managerModels);
+                                System.out.println("The manager is registered.");
+                                break;
+                            }
+                            case 8:{
+                                a =1;
+                                System.out.println("Exiting...");
+                                break;
+                            }
+                            default: a=1;
+                                System.out.println("Wrong dialing\n");
+                                break;
+                        }
+
+
+
+
+
+                        break;
+                    }
                     case 4:{
                         System.out.println("\nExiting....\n");
                         a=1;
