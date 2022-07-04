@@ -238,7 +238,7 @@ public class Main {
                         System.out.println("Please enter your id & password\n");
                         int id = scanner.nextInt();  // BURADA HATA İLE KARŞILAŞTIM O YÜZDEN BÖYLE
                         int password = scanner2.nextInt();
-                        boolean authenticaton = false;
+                        boolean authenticaton = false; // generic oluştur
                         for (ManagerModel managerModel1 : managerModels) {
                             if (managerModel1.getID() == id && managerModel1.getPassword() == password) {
                                 managerController = new ManagerController(managerModel1);
