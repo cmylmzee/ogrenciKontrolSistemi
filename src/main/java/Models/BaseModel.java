@@ -4,7 +4,8 @@ package Models;
 
 import java.util.List;
 
-public class BaseModel {
+public class BaseModel{
+    public BaseModel(){}
 
     private int ID;
     private String name;

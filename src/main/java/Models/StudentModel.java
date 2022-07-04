@@ -5,7 +5,7 @@ package Models;
 import java.util.List;
 
 public class StudentModel extends BaseModel{
-
+    public StudentModel(){}
     private List<Integer> notes;
     private String className;
     public List<Integer> getNotes() {

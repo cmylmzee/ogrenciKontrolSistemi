@@ -12,7 +12,6 @@ public class StudentControler extends CommonController {
 
     public StudentControler(BaseModel baseModel) {
         super(baseModel);
-
     }
 
     public List<Integer> getNotes() {
