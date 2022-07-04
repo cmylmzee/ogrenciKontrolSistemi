@@ -5,14 +5,12 @@ import Models.StudentModel;
 
 import java.util.List;
 
-public class StudentControler extends CommonController {
+public class StudentControler  {
+
+
 
     private StudentModel studentModel;
 
-
-    public StudentControler(BaseModel baseModel) {
-        super(baseModel);
-    }
 
     public List<Integer> getNotes() {
         return studentModel.getNotes();
@@ -28,5 +26,9 @@ public class StudentControler extends CommonController {
 
     public void setClassName(String className) {
         studentModel.setClassName(className);
+    }
+
+    public StudentControler(StudentModel studentModel) {
+        this.studentModel = studentModel;
     }
 }

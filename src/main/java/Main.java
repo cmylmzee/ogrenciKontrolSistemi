@@ -12,8 +12,7 @@ public class Main {
         List<Integer> notes = new ArrayList<>();
         List<String> tasks = new ArrayList<>();
 
-        BaseModel studentModel = new StudentModel(1,"cem","yılmaz",tasks,notes,"2a");
-        StudentControler studentControler = new StudentControler(studentModel);
+
 
 
 
