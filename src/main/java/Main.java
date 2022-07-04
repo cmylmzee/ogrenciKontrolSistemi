@@ -136,7 +136,8 @@ public class Main {
                                 "2-Add New Task For The Student\n" +
                                 "3-Add New Task For The Teacher\n" +
                                 "4-Add New Task For The Manager\n" +
-                                "5-Exit");
+                                "5-Show The Tasks\n" +
+                                "6-Exit");
                         switch (scanner.nextInt()){
                             case 1:{
                                 authenticaton = false;
@@ -219,6 +220,10 @@ public class Main {
                                 break;
                             }
                             case 5:{
+                                teacherController.showTheTasks();
+                                break;
+                            }
+                            case 6:{
                                 a =1;
                                 System.out.println("Exiting...");
                                 break;
@@ -341,7 +346,7 @@ public class Main {
                                     System.out.println("Please enter the student's ID, name, surname, class number, respectively.\n");
                                     List<String> tasks = new ArrayList<>();
                                     List<Integer> notes = new ArrayList<>();
-                                    int id = scanner.nextInt();
+                                    id = scanner.nextInt();
                                     boolean idIsValıd = false;
                                     for(StudentModel studentModel1 : studentModels){
                                         if (studentModel1.getID()==id){
@@ -360,7 +365,7 @@ public class Main {
                             case 6:{
                                 System.out.println("Please enter the teacher's ID, name, surname, class number, respectively.\n");
                                 List<String> tasks = new ArrayList<>();
-                                int id = scanner.nextInt();
+                                id = scanner.nextInt();
                                 boolean idIsValıd = false;
                                 for(TeacherModel teacherModel1 : teacherModels){
                                     if (teacherModel1.getID()==id){
@@ -380,7 +385,7 @@ public class Main {
                                 System.out.println("Please enter the manager's ID, name, surname, class number, respectively.\n");
                                 List<String> tasks = new ArrayList<>();
                                 List<Integer> notes = new ArrayList<>();
-                                int id = scanner.nextInt();
+                                id = scanner.nextInt();
                                 boolean idIsValıd = false;
                                 for(ManagerModel managerModel1 : managerModels){
                                     if (managerModel1.getID()==id){

@@ -30,5 +30,9 @@ public class CommonController{
         managerModel.getTasks().add(task);
     }
 
+    public void showTheTasks(BaseModel baseModel){
+        baseModel.getTasks();
+    }
+
 
 }
