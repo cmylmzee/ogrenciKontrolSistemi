@@ -11,14 +11,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        StudentModel studentModel2 =null;
-        TeacherModel teacherModel2 = null;
-        ManagerModel managerModel2 = null;
 
+        // CONTROLLERS
         StudentController studentController = null;
         ManagerController managerController = null;
         TeacherController teacherController = null;
-
+        //
 
         // MODELS LIST
         List<TeacherModel> teacherModels = new ArrayList<>();
