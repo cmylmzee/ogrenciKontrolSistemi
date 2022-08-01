@@ -66,7 +66,7 @@ public class StudentController {
             }
             System.out.println("Average is : " + total % studentModel.getNotes().size());
         }catch (Exception exception){
-            System.out.println(exception);
+            System.out.println("The list");
         }
 
     }
