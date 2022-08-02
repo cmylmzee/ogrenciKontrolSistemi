@@ -22,8 +22,6 @@ public class ManagerController extends CommonController {
         this.managerModel = managerModel;
     }
 
-
-
     public  void addNewStudent(StudentModel studentModel, List<StudentModel> studentModelList){
         try{
             studentModelList.add(studentModel);

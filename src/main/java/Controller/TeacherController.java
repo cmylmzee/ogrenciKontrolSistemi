@@ -29,6 +29,5 @@ public class TeacherController extends  CommonController{
             System.out.println("There was a problem viewing the tasks, try again later\n");
         }
 
-
     }
 }
